@@ -1,0 +1,64 @@
+/* Add this to your CSS file */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #EDF2F7;
+    color: #2D3748;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  .bg-gray-100 {
+    background-color: #EDF2F7;
+  }
+  
+  .bg-white {
+    background-color: #FFFFFF;
+  }
+  
+  .text-gray-100 {
+    color: #EDF2F7;
+  }
+  
+  .text-gray-600 {
+    color: #718096;
+  }
+  
+  .text-gray-800 {
+    color: #2D3748;
+  }
+  
+  .text-gray-900 {
+    color: #1A202C;
+  }
+  
+  .shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .list-disc {
+    list-style-type: disc;
+  }
+  
+  .list-inside {
+    list-style-position: inside;
+  }
+  

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        .left {
+            background-color: #333;
+            color: white;
+            padding-left: 20px;
+            padding-bottom: 1px;
+            padding-top: 15px;
+        }
+        .left3 {
+            background-color: #eee8ed;
+            color: rgb(10, 4, 4);
+            padding-top: 2px;
+            padding-left: 20px;
+            padding-right: 16px;
+            padding-bottom: 4px;
+        }
+        .left h1 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+        .left h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .left p {
+            margin: 10px 0;
+        }
+        .left .section {
+            margin-bottom: 20px;
+        }
+        .left .section h3 {
+            font-size: 18px;
+            margin: 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #f5f0f1;
+        }
+        .left .section p {
+            margin: 5px 0;
+        }
+        .skills, .certifications, .strengths, .hobbies, .languages {
+            list-style: none;
+            padding: 0;
+        }
+        .skills li, .certifications li, .strengths li, .hobbies li, .languages li {
+            margin: 5px 0;
+        }
+        .right {
+            padding: 20px;
+        }
+        .right .section {
+            margin-bottom: 20px;
+        }
+        .right .section h3 {
+            font-size: 18px;
+            margin: 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #333;
+        }
+        .right .section p {
+            margin: 5px 0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="resume">
+    <div class="left2">
+        <div class="left">
+            <h1>Mr. Deepak Kumar</h1>
+            <h2>REACT JS DEVELOPER</h2>
+            <div class="address">
+                <p>dk4803382@gmail.com</p>
+                <p>+91-76963-27196</p>
+                <p>Vill. Sante Majra, SAS Nagar (Mohali)</p>
+            </div>
+        </div>
+        <div class="left3">
+            <div class="section">
+                <h3>EDUCATION</h3>
+                <h4>Matriculation</h4>
+                <p>P.S.E.B.</p>
+                <p>2020</p>
+                <p>95%</p>
+                <h4>Diploma in Computer Science and Engineering</h4>
+                <p>Govt. Polytechnic College, Mohali</p>
+                <p>2023</p>
+                <p>73%</p>
+            </div>
+            <div class="section">
+                <h3>SKILLS</h3>
+                <ul class="skills">
+                    <li>React.Js</li>
+                    <li>HTML, CSS, Tailwind, Bootstrap</li>
+                    <li>Redux, Redux Toolkit</li>
+                    <li>JavaScript</li>
+                    <li>MongoDb and Firebase</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="section">
+            <h3>TRAININGS</h3>
+            <h4>Python</h4>
+            <p>Future Finders, S.A.S. Nagar, Punjab (July 2022 - August 2022)</p>
+            <h4>Personality Development Course</h4>
+            <p>Future Finders, S.A.S. Nagar, Punjab (July 2022 - August 2022)</p>
+            <h4>React.Js</h4>
+            <p>PRM Digital (November 15, 2023 - April 30, 2024)</p>
+        </div>
+        <div class="section">
+            <h3>Internship</h3>
+            <ul class="strengths">
+                <li>Full Stack</li>
+                <li>Mobziway Technology (May 16, 2024)</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>STRENGTHS</h3>
+            <ul class="strengths">
+                <li>Excellent Communication Skills</li>
+                <li>Ready to take responsibilities</li>
+                <li>Dedication towards work</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<button onclick="downloadPDF()">Download Resume</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    const { jsPDF } = window.jspdf;
+
+    function downloadPDF() {
+        const resume = document.getElementById('resume');
+        
+        html2canvas(resume, { scale: 8 }).then((canvas) => { 
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('resume.pdf');
+        });
+    }
+</script>
+
+</body>
+</html>
