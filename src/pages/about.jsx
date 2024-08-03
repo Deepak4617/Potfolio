@@ -20,6 +20,7 @@ const About = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  
 
   return (
     <React.Fragment>
