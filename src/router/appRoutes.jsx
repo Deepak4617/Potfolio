@@ -33,6 +33,7 @@ import About from '../pages/about';
 import Experience from '../pages/experience';
 import Contact from '../pages/contact';
 import Projects from '../pages/project';
+import Footer from '../components/common/footer';
 
 const AppRoute = () => {
   return (
@@ -47,6 +48,7 @@ const AppRoute = () => {
         {/* Optional: Add a catch-all route for undefined paths */}
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
+      <Footer/>
     </>
   );
 };

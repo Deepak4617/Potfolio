@@ -38,7 +38,7 @@ const Home = () => {
         <main className="flex flex-col items-center space-y-8 md:flex-row md:space-y-0 md:space-x-8">
           <img src={profilePic2} alt="Deepak Kumar" className="w-64 h-64 rounded-full shadow-lg mx-auto" />
           <div className="text-center md:text-left">
-            <div className="marquee-container">
+            <div className="marquee-container2">
               <div className="marquee-text">
                 <h2 className="text-lg text-gray-600">Hello, I'm</h2>
                 <h1 className="mt-2 text-4xl font-bold text-gray-900">Deepak Kumar</h1>
@@ -64,7 +64,7 @@ const Home = () => {
           </div>
         </main>
         <style jsx>{`
-        .marquee-container {
+        .marquee-container2 {
           overflow: hidden;
           white-space: nowrap;
           display: flex;

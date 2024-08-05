@@ -14,21 +14,22 @@ const experiences = [
       'Collaborated with the design team to translate visual concept into functional.',
       'Created designs and developed responsive websites.'
     ],
-    documentLink: Pdf2 
+    documentLink: Pdf2
   },
   {
-    role: 'Web Developer Intern',
+    role: 'Software Intern',
     company: 'Mobzway Technologies',
     duration: 'May 21 2024 - continue',
     responsibilities: [
-      'Assisted in the development of front-end web applications',
-      'Collaborated with senior developers to perform bug fixes and code reviews',
-      'Participated in team meetings and provided input on front-end development strategies',
+      'Worked on front-end web applications using ReactJS.',
+      'This intern i learn Socket.io mongoDb and etc.  ',
+      'Contributed to team discussions on front-end development strategies.',
+      'Learn and Create Firebase for authentication and real-time database.'
     ],
     documentLink: Pdf
-    
   },
 ];
+
 
 const Experience = () => {
   return (
