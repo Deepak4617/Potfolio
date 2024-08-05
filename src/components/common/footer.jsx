@@ -12,8 +12,8 @@ import bootstrapLogo from '../../assets/images/bootstrap.png';
 const Footer = () => {
   return (
     <footer className="bg-gray-900 py-4">
-      <div className="overflow-hidden marquee-container">
-        <div className="flex gap-10 animate-marquee">
+      <div className="overflow-hidden">
+        <div className="flex gap-2 animate-marquee">
           <img src={reactLogo} alt="React" title="React" className="h-12 w-12" />
           <img src={bootstrapLogo} alt="Bootstrap" title="Bootstrap" className="h-12 w-12" />
           <img src={tailwindLogo} alt="Tailwind CSS" title="Tailwind CSS" className="h-12 w-12" />

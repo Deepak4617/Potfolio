@@ -1,21 +1,23 @@
 .marquee-container {
-    overflow: hidden;
-    position: relative;
-    width: 94rem;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  /* justify-content: center; */
+}
+
+.animate-marquee {
+  display: flex; /* Ensure items are aligned in a row */
+  width: 100%; /* Ensure content width adjusts to fit all items */
+  animation: marquee 10s linear 1;
+  justify-content: center;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%); /* Start off-screen to the right */
   }
-  
-  .animate-marquee {
-    display: flex;
-    white-space: nowrap; /* Prevent line breaks */
-    animation: marquee 15s linear infinite;
+  100% {
+    transform: translateX(-100%); /* End off-screen to the left */
   }
-  
-  @keyframes marquee {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
+}
