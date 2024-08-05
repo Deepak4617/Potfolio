@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../assets/css/footer.css';
 
 import javascriptLogo from '../../assets/images/javascript.png';
 import reactLogo from '../../assets/images/react.png';
