@@ -8,11 +8,14 @@ const Contact = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
+  const [isMapLoading, setIsMapLoading] = useState(true); 
 
   const handleChange = (e) => {
+    const {name,value} = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]:value
+      // [e.target.name]: e.target.value,
     });
   };
 
@@ -85,7 +88,7 @@ const Contact = () => {
       </div>
 
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-600 flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8 bg-gradient-to-b from-white to-gray-600 p-8 rounded-lg shadow-xxl">
+        <div className="max-w-md w-full space-y-8 bg-gray-300 p-8 rounded-lg mt-10 shadow-xxl">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">Contact Us</h2>
           <p className="text-center text-gray-600">We'd love to hear from you. Please fill out the form below to get in touch.</p>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -151,6 +154,7 @@ const Contact = () => {
                   onChange={handleChange}
                 ></textarea>
               </div>
+             
             </div>
             <div>
               <button
@@ -161,6 +165,21 @@ const Contact = () => {
                 Send Message
               </button>
             </div>
+            {isMapLoading && (
+  <div className="text-center my-4">
+    <p>Loading map...</p>
+  </div>
+)}
+<div className="w-full overflow-hidden">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3429.8889854931717!2d76.65235837537254!3d30.721521174589764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fef91afd9c903%3A0xc13b1aff0517a752!2sSante%20Majra%2C%20Sector%20115%2C%20Sahibzada%20Ajit%20Singh%20Nagar%2C%20Punjab%20140307!5e0!3m2!1sen!2sin!4v1723015737821!5m2!1sen!2sin"
+    style={{ border: '0', position: 'relative', top: '0', left: '0', width: '380px', height: '300px' }}
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    onLoad={() => setIsMapLoading(false)} 
+  ></iframe>
+</div>
+
           </form>
 
           {isSubmitted && !isClicked && (
