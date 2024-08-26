@@ -1,32 +1,59 @@
 import React, { useState } from 'react';
 import { Toast } from 'flowbite-react';
 import { ToastMessage } from '../components/toastMessge/toast';
+import { ContactModal } from '../components/model/contactModal';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const [isMapLoading, setIsMapLoading] = useState(true); 
+  const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(false); 
 
   const handleChange = (e) => {
-    const {name,value} = e.target;
+    const {name, value} = e.target;
     setFormData({
       ...formData,
-      [name]:value
-      // [e.target.name]: e.target.value,
+      [name]: value
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitted(true);
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true); 
+
+    const formData = new FormData(event.target);
+    formData.append("access_key", "24dfccff-76d9-4a14-aef1-b59939f53bc9");
+  
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+  
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      }).then((res) => res.json());
+  
+      if (res.success) {
+        setOpenModal(true);
+      } else {
+        console.log("Form submission failed:", res);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    } finally {
+      setLoading(false); // Set loading state to false after the request completes
+    }
   };
 
-  const handleLinkClick = () => {
-    setIsClicked(true);
-  };
+  // const handleLinkClick = () => {
+  //   setIsClicked(true);
+  // };
 
   const handleCopyEmail = () => {
     const email = 'Dk4803382@gmail.com';
@@ -70,7 +97,7 @@ const Contact = () => {
   
     document.body.removeChild(textArea);
   };
-  
+
   const submittedMessage = `Name: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\nMessage: ${formData.message}`;
 
   return (
@@ -91,7 +118,7 @@ const Contact = () => {
         <div className="max-w-md w-full space-y-8 bg-gray-300 p-8 rounded-lg mt-10 shadow-xxl">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">Contact Us</h2>
           <p className="text-center text-gray-600">We'd love to hear from you. Please fill out the form below to get in touch.</p>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <form className="mt-8 space-y-6" onSubmit={onSubmit}>
             <div className="mt-4 flex justify-start space-x-4">
               <button
                 type="button"
@@ -154,15 +181,15 @@ const Contact = () => {
                   onChange={handleChange}
                 ></textarea>
               </div>
-             
             </div>
             <div>
               <button
                 type="submit"
-                style={{marginLeft:'-0px'}}
-                className="mr-10 roup relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                style={{ marginLeft: '-0px' }}
+                className={`mr-10 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={loading} 
               >
-                Send Message
+                {loading ? 'Sending...' : 'Send Message'}
               </button>
             </div>
             {isMapLoading && (
@@ -182,7 +209,7 @@ const Contact = () => {
 
           </form>
 
-          {isSubmitted && !isClicked && (
+          {/* {isSubmitted && !isClicked && (
             <div className="mt-4 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded">
               <h3 className="text-center text-lg font-bold">Message Ready to Send!</h3>
               <p className="mt-2 text-center">Your message is ready to be sent via WhatsApp or Email. Please choose an option below:</p>
@@ -206,13 +233,10 @@ const Contact = () => {
                 </a>
               </div>
             </div>
-          )}
+          )} */}
 
-          {isClicked && (
-            <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-              <h3 className="text-center text-lg font-bold">Message Sent Successfully!</h3>
-              <p className="mt-2 text-center">Your message has been sent. We will get back to you soon.</p>
-            </div>
+          {openModal && (
+            <ContactModal openModal={openModal} setOpenModal={setOpenModal}/>
           )}
         </div>
       </div>

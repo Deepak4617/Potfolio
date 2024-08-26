@@ -1,8 +1,9 @@
 import React from 'react';
 import '../assets/css/style.css';
 import Images2 from '../assets/images/Deepak_Kumar.pdf'
-import Pdf from '../assets/documents/Deepak_Offer.pdf'
-import Pdf2 from '../assets/documents/PRM_Digital_Letter.pdf'
+import Pdf from '../assets/documents/Deepak_Offer.pdf';
+import Pdf2 from '../assets/documents/PRM_Digital_Letter.pdf';
+import Pdf3 from '../assets/images/InternshipCertificate.png'
 
 const experiences = [
   {
@@ -26,7 +27,7 @@ const experiences = [
       'Contributed to team discussions on front-end development strategies.',
       'Learn and Create Firebase for authentication and real-time database.'
     ],
-    documentLink: Pdf
+    documentLink: Pdf3
   },
 ];
 
