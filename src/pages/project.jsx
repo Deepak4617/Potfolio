@@ -2,6 +2,9 @@ import React from 'react';
 import Image2 from '../assets/images/project1.png';
 import Project2 from '../assets/images/project2.png';
 import Project3 from '../assets/images/project3.png';
+import Project4 from '../assets/images/project4.png';
+import Project5 from '../assets/images/project5.png';
+
 
 const Projects = () => {
   const projects = [
@@ -33,7 +36,40 @@ const Projects = () => {
       link: 'https://frontend-gmld.onrender.com',
       image2: Project3,
     },
+    {
+      title: "DK Tech Solutions | Web Development & IT Services Company",
+      description: "DK Tech Solutions provides professional website development, WordPress design, IT consulting, and digital solutions. We build fast, secure, and responsive websites using modern technologies to grow your business online.",
+      technologies: [
+        "WordPress",
+        "Elementor"
+      ],
+      link: 'https://techietech.wuaze.com/',
+      image2: Project4,
+    },
+    {
+      title: "Hospital Management System (HMS) – Admin & Patient Portal",
+      description: "Developed a Hospital Management System using modern web technologies to manage patients, doctors, appointments, and hospital records efficiently. The application includes authentication, protected routes, CRUD operations, and database integration for secure data handling",
+      keyFeature: "Patient Registration and Login Appointment Booking System Doctor and Admin Dashboard Secure Authentication Database Integration Responsive UI Design",
+      technologies: [
+        "MongoDB",
+        "Express JS",
+        "React JS",
+        "Node JS",
+        "Tailwind CSS",
+        "JWT Authentication"
+      ],
+      link: 'under processing...',
+      image2: Project5,
+    },
   ];
+
+  const handleProjectClick = (link) => {
+    if (link === "under processing...") {
+      alert("🚧 Hospital Management System is currently under development. It will be live soon!");
+    } else {
+      window.open(link, "_blank");
+    }
+  };
 
 
   return (
@@ -56,9 +92,15 @@ const Projects = () => {
                   </ul>
                 </div>
                 <div className="mt-6">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-900 font-semibold">
-                    View Project
-                  </a>
+                  <button
+                    onClick={() => handleProjectClick(project.link)}
+                    className={`font-semibold ${project.link === "under processing..."
+                      ? "text-gray-400 cursor-not-allowed"
+                      : "text-indigo-600 hover:text-indigo-900"
+                      }`}
+                  >
+                    {project.link === "under processing..." ? "Coming Soon" : "View Project"}
+                  </button>
                 </div>
               </div>
             ))}
